@@ -1,0 +1,23 @@
+{% extends 'rango/base.html' %}
+{% block title%}Login{% endblock %}
+
+{% block body_block %}
+<div class="jumbotron">
+	<h1>Login to Rango</h1>
+	{% if user.is_authenticated %}
+		<p><b>You are already logged in as {{ user.username }}!!! Please Logout before you Login as another user!!!</b></p>
+	{% else %}
+	<div class="container-fluid">
+		<form class="form-signin span4" id="login_form" method="post" action="/rango/login/">
+			<h2 class="form-signin-heading">Please Sign In</h2>
+			{% csrf_token %}
+			<span>{{ errors }}</span>
+			UserName: <br/><input type="text" class="input-block-level" name="username" placeholder="UserName" value="" size="50" />
+			<br/><br/>
+			Password: <br/><input type="password" class="input-block-level" name="password" placeholder="Password" value="" size="50" /><br/><br/>
+			<button class="btn btn-primary" type="submit" name="submit">Sign In</button>
+		</form>
+	</div>
+	{% endif %}
+</div>
+{% endblock %}

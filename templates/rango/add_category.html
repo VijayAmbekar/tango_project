@@ -1,0 +1,26 @@
+{% extends 'rango/base.html' %}
+{% block title%}Add a category{% endblock %}
+
+{% block body_block %}
+<div class="jumbotron">
+	<h1>Add a Category</h1>
+	<br/>
+	<div class="container-fluid">
+		<form class="span6" id="category_form" method="post" action="/rango/add_category/">
+			{% csrf_token %}
+			{% for hidden in form.hidden_fields %}
+				{{ hidden }}
+			{% endfor %}
+			
+			{% for field in form.visible_fields %}
+				{{ fiels.errors }}
+				{{ field.help_text }}<br/><br/>
+				{{ field }}
+			{% endfor %}
+			
+			<br/><br/>
+			<button class="btn btn-primary" type="submit" name="submit">CreateCategory</button>
+		</form>
+	</div>
+</div>
+{% endblock %}
